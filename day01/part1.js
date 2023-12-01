@@ -1,4 +1,3 @@
-import { get } from 'http';
 import { textFileToArray } from '../utils/textFileToArray.js';
 
 function getLineResult(line) {
@@ -46,5 +45,5 @@ export function part1() {
     allResults.push(getLineResult(line));
   });
 
-  console.log(getFinalResult(allResults));
+  return getFinalResult(allResults);
 }
