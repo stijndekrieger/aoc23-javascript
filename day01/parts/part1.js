@@ -1,4 +1,4 @@
-import { textFileToArray } from '../utils/textFileToArray.js';
+import { textFileToArray } from '../../utils/textFileToArray.js';
 
 function getLineResult(line) {
   var firstNumber;
