@@ -38,9 +38,6 @@ function swapTextToNumber(text) {
     case 'nine':
       number = 9;
       break;
-    default:
-      number = 0;
-      break;
   }
 
   return number;
@@ -69,7 +66,7 @@ function getLineResult(line) {
   var firstNumber;
   var lastNumber;
   var possibleResults = [];
-  var resultOfLine
+  var resultOfLine = "";
 
   //Add all numbers to possibleResults
   line.split('').forEach((char, index) => {
@@ -81,25 +78,22 @@ function getLineResult(line) {
 
   //Check strings for possible results
   const stringsArray = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-  var matchingNumber;
-  var matchingIndex;
 
   for (let i = 0; i < stringsArray.length; i++) {
     const currentString = stringsArray[i];
-    const index = line.indexOf(currentString);
-    if (index !== -1) {
-      matchingNumber = currentString;
-      matchingIndex = index;
-      possibleResults.push(new lineResult(swapTextToNumber(matchingNumber), matchingIndex));
+    let index = -1;
+  
+    while ((index = line.indexOf(currentString, index + 1)) !== -1) {
+      possibleResults.push(new lineResult(swapTextToNumber(currentString), index));
     }
   }
 
   possibleResults = filterResults(possibleResults);
 
-  resultOfLine = possibleResults.reduce((accumulator, currentValue) => {
-    return accumulator.toString() + currentValue.number.toString();
-  }, 0);
-  
+  possibleResults.forEach(result => {
+    resultOfLine += result.number.toString();
+  })
+
   return resultOfLine;
 }
 
@@ -118,6 +112,7 @@ export function part2(filePath) {
 
   var allResults = [];
   lines.forEach(line => {
+    // console.log(line);
     allResults.push(getLineResult(line));
   });
 
