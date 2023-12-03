@@ -20,7 +20,7 @@ function getLineResult(line) {
   if(lastNumber) {
     lineResult = (firstNumber.toString() + lastNumber.toString());
   } else {
-    lineResult = firstNumber.toString() +firstNumber.toString();
+    lineResult = firstNumber.toString() + firstNumber.toString();
   }
   
   return lineResult;
@@ -36,8 +36,7 @@ function getFinalResult(allResults) {
   return finalResult;
 }
 
-export function part1() {
-  const filePath = 'day01/data/calibration.txt';
+export function part1(filePath) {
   const lines = textFileToArray(filePath);
 
   var allResults = [];
